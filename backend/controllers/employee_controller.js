@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const employee = require('../models/employeeSchema.js');
+const Student = require('../models/studentSchema.js');
 const Subject = require('../models/subjectSchema.js');
 
 const employeeRegister = async (req, res) => {
