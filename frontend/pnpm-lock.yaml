@@ -76,7 +76,7 @@ importers:
         specifier: ^16.0.0
         version: 16.0.0
       webpack:
-        specifier: ^5.81.0
+        specifier: ^5.98.0
         version: 5.98.0
 
 packages:

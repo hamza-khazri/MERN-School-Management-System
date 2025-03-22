@@ -51,6 +51,6 @@
     "eslint": "^9.23.0",
     "eslint-plugin-react": "^7.37.4",
     "globals": "^16.0.0",
-    "webpack": "^5.81.0"
+    "webpack": "^5.98.0"
   }
 }
