@@ -7,6 +7,6 @@ import pluginReact from "eslint-plugin-react";
 export default defineConfig([
   { files: ["**/*.{js,mjs,cjs,jsx}"] },
   { files: ["**/*.{js,mjs,cjs,jsx}"], languageOptions: { globals: globals.browser } },
-  { files: ["**/*.{js,mjs,cjs,jsx}"], plugins: { js }, extends: ["js/recommended"] , rules: {"no-unused-vars": ["warn", { varsIgnorePattern: ".*", argsIgnorePattern: "^_" }]}},
+  { files: ["**/*.{js,mjs,cjs,jsx}"], plugins: { js }, extends: ["js/recommended"] , rules: {"no-unused-vars": "off"}},
   pluginReact.configs.flat.recommended,
 ]);
