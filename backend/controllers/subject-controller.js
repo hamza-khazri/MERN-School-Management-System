@@ -1,6 +1,6 @@
 const Subject = require('../models/subjectSchema.js');
 const Teacher = require('../models/teacherSchema.js');
-const Student = require('../models/studentSchema.js');
+const employee = require('../models/employeeSchema.js');
 
 const subjectCreate = async (req, res) => {
     try {
@@ -98,14 +98,14 @@ const deleteSubject = async (req, res) => {
             { $unset: { teachSubject: "" }, $unset: { teachSubject: null } }
         );
 
-        // Remove the objects containing the deleted subject from students' examResult array
-        await Student.updateMany(
+        // Remove the objects containing the deleted subject from employees' examResult array
+        await employee.updateMany(
             {},
             { $pull: { examResult: { subName: deletedSubject._id } } }
         );
 
-        // Remove the objects containing the deleted subject from students' attendance array
-        await Student.updateMany(
+        // Remove the objects containing the deleted subject from employees' attendance array
+        await employee.updateMany(
             {},
             { $pull: { attendance: { subName: deletedSubject._id } } }
         );
@@ -126,8 +126,8 @@ const deleteSubjects = async (req, res) => {
             { $unset: { teachSubject: "" }, $unset: { teachSubject: null } }
         );
 
-        // Set examResult and attendance to null in all students
-        await Student.updateMany(
+        // Set examResult and attendance to null in all employees
+        await employee.updateMany(
             {},
             { $set: { examResult: null, attendance: null } }
         );
@@ -148,8 +148,8 @@ const deleteSubjectsByClass = async (req, res) => {
             { $unset: { teachSubject: "" }, $unset: { teachSubject: null } }
         );
 
-        // Set examResult and attendance to null in all students
-        await Student.updateMany(
+        // Set examResult and attendance to null in all employees
+        await employee.updateMany(
             {},
             { $set: { examResult: null, attendance: null } }
         );

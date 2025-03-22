@@ -4,24 +4,24 @@ const router = require('express').Router();
 
 const { adminRegister, adminLogIn, getAdminDetail} = require('../controllers/admin-controller.js');
 
-const { sclassCreate, sclassList, deleteSclass, deleteSclasses, getSclassDetail, getSclassStudents } = require('../controllers/class-controller.js');
+const { sclassCreate, sclassList, deleteSclass, deleteSclasses, getSclassDetail, getSclassemployees } = require('../controllers/class-controller.js');
 const { complainCreate, complainList } = require('../controllers/complain-controller.js');
 const { noticeCreate, noticeList, deleteNotices, deleteNotice, updateNotice } = require('../controllers/notice-controller.js');
 const {
-    studentRegister,
-    studentLogIn,
-    getStudents,
-    getStudentDetail,
-    deleteStudents,
-    deleteStudent,
-    updateStudent,
-    studentAttendance,
-    deleteStudentsByClass,
+    employeeRegister,
+    employeeLogIn,
+    getemployees,
+    getemployeeDetail,
+    deleteemployees,
+    deleteemployee,
+    updateemployee,
+    employeeAttendance,
+    deleteemployeesByClass,
     updateExamResult,
-    clearAllStudentsAttendanceBySubject,
-    clearAllStudentsAttendance,
-    removeStudentAttendanceBySubject,
-    removeStudentAttendance } = require('../controllers/student_controller.js');
+    clearAllemployeesAttendanceBySubject,
+    clearAllemployeesAttendance,
+    removeemployeeAttendanceBySubject,
+    removeemployeeAttendance } = require('../controllers/employee_controller.js');
 const { subjectCreate, classSubjects, deleteSubjectsByClass, getSubjectDetail, deleteSubject, freeSubjectList, allSubjects, deleteSubjects } = require('../controllers/subject-controller.js');
 const { teacherRegister, teacherLogIn, getTeachers, getTeacherDetail, deleteTeachers, deleteTeachersByClass, deleteTeacher, updateTeacherSubject, teacherAttendance } = require('../controllers/teacher-controller.js');
 
@@ -34,29 +34,29 @@ router.get("/Admin/:id", getAdminDetail)
 
 // router.put("/Admin/:id", updateAdmin)
 
-// Student
+// employee
 
-router.post('/StudentReg', studentRegister);
-router.post('/StudentLogin', studentLogIn)
+router.post('/employeeReg', employeeRegister);
+router.post('/employeeLogin', employeeLogIn)
 
-router.get("/Students/:id", getStudents)
-router.get("/Student/:id", getStudentDetail)
+router.get("/employees/:id", getemployees)
+router.get("/employee/:id", getemployeeDetail)
 
-router.delete("/Students/:id", deleteStudents)
-router.delete("/StudentsClass/:id", deleteStudentsByClass)
-router.delete("/Student/:id", deleteStudent)
+router.delete("/employees/:id", deleteemployees)
+router.delete("/employeesClass/:id", deleteemployeesByClass)
+router.delete("/employee/:id", deleteemployee)
 
-router.put("/Student/:id", updateStudent)
+router.put("/employee/:id", updateemployee)
 
 router.put('/UpdateExamResult/:id', updateExamResult)
 
-router.put('/StudentAttendance/:id', studentAttendance)
+router.put('/employeeAttendance/:id', employeeAttendance)
 
-router.put('/RemoveAllStudentsSubAtten/:id', clearAllStudentsAttendanceBySubject);
-router.put('/RemoveAllStudentsAtten/:id', clearAllStudentsAttendance);
+router.put('/RemoveAllemployeesSubAtten/:id', clearAllemployeesAttendanceBySubject);
+router.put('/RemoveAllemployeesAtten/:id', clearAllemployeesAttendance);
 
-router.put('/RemoveStudentSubAtten/:id', removeStudentAttendanceBySubject);
-router.put('/RemoveStudentAtten/:id', removeStudentAttendance)
+router.put('/RemoveemployeeSubAtten/:id', removeemployeeAttendanceBySubject);
+router.put('/RemoveemployeeAtten/:id', removeemployeeAttendance)
 
 // Teacher
 
@@ -98,7 +98,7 @@ router.post('/SclassCreate', sclassCreate);
 router.get('/SclassList/:id', sclassList);
 router.get("/Sclass/:id", getSclassDetail)
 
-router.get("/Sclass/Students/:id", getSclassStudents)
+router.get("/Sclass/employees/:id", getSclassemployees)
 
 router.delete("/Sclasses/:id", deleteSclasses)
 router.delete("/Sclass/:id", deleteSclass)
