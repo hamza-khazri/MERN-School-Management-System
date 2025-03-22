@@ -38,7 +38,7 @@ const TeacherClassDetails = () => {
         };
     })
 
-    const employeesButtonHaver = ({ row }) => {
+    const EmployeesButtonHaver = ({ row }) => {
         const options = ['Take Attendance', 'Provide Marks'];
 
         const [open, setOpen] = React.useState(false);
@@ -165,7 +165,7 @@ const TeacherClassDetails = () => {
                             </Typography>
 
                             {Array.isArray(sclassemployees) && sclassemployees.length > 0 &&
-                                <TableTemplate buttonHaver={employeesButtonHaver} columns={employeeColumns} rows={employeeRows} />
+                                <TableTemplate buttonHaver={EmployeesButtonHaver} columns={employeeColumns} rows={employeeRows} />
                             }
                         </Paper>
                     )}
