@@ -1,6 +1,6 @@
 import { Container, Grid, Paper } from '@mui/material'
 import SeeNotice from '../../components/SeeNotice';
-import Students from "../../assets/img1.png";
+import employees from "../../assets/img1.png";
 import Classes from "../../assets/img2.png";
 import Teachers from "../../assets/img3.png";
 import Fees from "../../assets/img4.png";
@@ -9,12 +9,12 @@ import CountUp from 'react-countup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getAllSclasses } from '../../redux/sclassRelated/sclassHandle';
-import { getAllStudents } from '../../redux/studentRelated/studentHandle';
+import { getAllEmployees } from '../../redux/employeeRelated/employeeHandle';
 import { getAllTeachers } from '../../redux/teacherRelated/teacherHandle';
 
 const AdminHomePage = () => {
     const dispatch = useDispatch();
-    const { studentsList } = useSelector((state) => state.student);
+    const { employeesList } = useSelector((state) => state.employee);
     const { sclassesList } = useSelector((state) => state.sclass);
     const { teachersList } = useSelector((state) => state.teacher);
 
@@ -23,12 +23,12 @@ const AdminHomePage = () => {
     const adminID = currentUser._id
 
     useEffect(() => {
-        dispatch(getAllStudents(adminID));
+        dispatch(getAllEmployees(adminID));
         dispatch(getAllSclasses(adminID, "Sclass"));
         dispatch(getAllTeachers(adminID));
     }, [adminID, dispatch]);
 
-    const numberOfStudents = studentsList && studentsList.length;
+    const numberOfemployees = employeesList && employeesList.length;
     const numberOfClasses = sclassesList && sclassesList.length;
     const numberOfTeachers = teachersList && teachersList.length;
 
@@ -38,11 +38,11 @@ const AdminHomePage = () => {
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={3} lg={3}>
                         <StyledPaper>
-                            <img src={Students} alt="Students" />
+                            <img src={employees} alt="employees" />
                             <Title>
-                                Total Students
+                                Total employees
                             </Title>
-                            <Data start={0} end={numberOfStudents} duration={2.5} />
+                            <Data start={0} end={numberOfemployees} duration={2.5} />
                         </StyledPaper>
                     </Grid>
                     <Grid item xs={12} md={3} lg={3}>

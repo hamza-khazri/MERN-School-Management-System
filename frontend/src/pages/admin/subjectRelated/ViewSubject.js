@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getClassStudents, getSubjectDetails } from '../../../redux/sclassRelated/sclassHandle';
+import { getClassemployees, getSubjectDetails } from '../../../redux/sclassRelated/sclassHandle';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Tab, Container, Typography, BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
@@ -18,13 +18,13 @@ const ViewSubject = () => {
   const navigate = useNavigate()
   const params = useParams()
   const dispatch = useDispatch();
-  const { subloading, subjectDetails, sclassStudents, getresponse, error } = useSelector((state) => state.sclass);
+  const { subloading, subjectDetails, sclassemployees, getresponse, error } = useSelector((state) => state.sclass);
 
   const { classID, subjectID } = params
 
   useEffect(() => {
     dispatch(getSubjectDetails(subjectID, "Subject"));
-    dispatch(getClassStudents(classID));
+    dispatch(getClassemployees(classID));
   }, [dispatch, subjectID, classID]);
 
   if (error) {
@@ -42,32 +42,32 @@ const ViewSubject = () => {
     setSelectedSection(newSection);
   };
 
-  const studentColumns = [
+  const employeeColumns = [
     { id: 'rollNum', label: 'Roll No.', minWidth: 100 },
     { id: 'name', label: 'Name', minWidth: 170 },
   ]
 
-  const studentRows = sclassStudents.map((student) => {
+  const employeeRows = sclassemployees.map((employee) => {
     return {
-      rollNum: student.rollNum,
-      name: student.name,
-      id: student._id,
+      rollNum: employee.rollNum,
+      name: employee.name,
+      id: employee._id,
     };
   })
 
-  const StudentsAttendanceButtonHaver = ({ row }) => {
+  const employeesAttendanceButtonHaver = ({ row }) => {
     return (
       <>
         <BlueButton
           variant="contained"
-          onClick={() => navigate("/Admin/students/student/" + row.id)}
+          onClick={() => navigate("/Admin/employees/employee/" + row.id)}
         >
           View
         </BlueButton>
         <PurpleButton
           variant="contained"
           onClick={() =>
-            navigate(`/Admin/subject/student/attendance/${row.id}/${subjectID}`)
+            navigate(`/Admin/subject/employee/attendance/${row.id}/${subjectID}`)
           }
         >
           Take Attendance
@@ -76,24 +76,24 @@ const ViewSubject = () => {
     );
   };
 
-  const StudentsMarksButtonHaver = ({ row }) => {
+  const employeesMarksButtonHaver = ({ row }) => {
     return (
       <>
         <BlueButton
           variant="contained"
-          onClick={() => navigate("/Admin/students/student/" + row.id)}
+          onClick={() => navigate("/Admin/employees/employee/" + row.id)}
         >
           View
         </BlueButton>
         <PurpleButton variant="contained"
-          onClick={() => navigate(`/Admin/subject/student/marks/${row.id}/${subjectID}`)}>
+          onClick={() => navigate(`/Admin/subject/employee/marks/${row.id}/${subjectID}`)}>
           Provide Marks
         </PurpleButton>
       </>
     );
   };
 
-  const SubjectStudentsSection = () => {
+  const SubjectemployeesSection = () => {
     return (
       <>
         {getresponse ? (
@@ -101,23 +101,23 @@ const ViewSubject = () => {
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
               <GreenButton
                 variant="contained"
-                onClick={() => navigate("/Admin/class/addstudents/" + classID)}
+                onClick={() => navigate("/Admin/class/addemployees/" + classID)}
               >
-                Add Students
+                Add employees
               </GreenButton>
             </Box>
           </>
         ) : (
           <>
             <Typography variant="h5" gutterBottom>
-              Students List:
+              employees List:
             </Typography>
 
             {selectedSection === 'attendance' &&
-              <TableTemplate buttonHaver={StudentsAttendanceButtonHaver} columns={studentColumns} rows={studentRows} />
+              <TableTemplate buttonHaver={employeesAttendanceButtonHaver} columns={employeeColumns} rows={employeeRows} />
             }
             {selectedSection === 'marks' &&
-              <TableTemplate buttonHaver={StudentsMarksButtonHaver} columns={studentColumns} rows={studentRows} />
+              <TableTemplate buttonHaver={employeesMarksButtonHaver} columns={employeeColumns} rows={employeeRows} />
             }
 
             <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
@@ -142,7 +142,7 @@ const ViewSubject = () => {
   }
 
   const SubjectDetailsSection = () => {
-    const numberOfStudents = sclassStudents.length;
+    const numberOfemployees = sclassemployees.length;
 
     return (
       <>
@@ -159,7 +159,7 @@ const ViewSubject = () => {
           Subject Sessions : {subjectDetails && subjectDetails.sessions}
         </Typography>
         <Typography variant="h6" gutterBottom>
-          Number of Students: {numberOfStudents}
+          Number of employees: {numberOfemployees}
         </Typography>
         <Typography variant="h6" gutterBottom>
           Class Name : {subjectDetails && subjectDetails.sclassName && subjectDetails.sclassName.sclassName}
@@ -189,7 +189,7 @@ const ViewSubject = () => {
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <TabList onChange={handleChange} sx={{ position: 'fixed', width: '100%', bgcolor: 'background.paper', zIndex: 1 }}>
                   <Tab label="Details" value="1" />
-                  <Tab label="Students" value="2" />
+                  <Tab label="employees" value="2" />
                 </TabList>
               </Box>
               <Container sx={{ marginTop: "3rem", marginBottom: "4rem" }}>
@@ -197,7 +197,7 @@ const ViewSubject = () => {
                   <SubjectDetailsSection />
                 </TabPanel>
                 <TabPanel value="2">
-                  <SubjectStudentsSection />
+                  <SubjectemployeesSection />
                 </TabPanel>
               </Container>
             </TabContext>

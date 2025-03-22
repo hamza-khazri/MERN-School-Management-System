@@ -61,7 +61,7 @@ const ShowClasses = () => {
   const SclassButtonHaver = ({ row }) => {
     const actions = [
       { icon: <PostAddIcon />, name: 'Add Subjects', action: () => navigate("/Admin/addsubject/" + row.id) },
-      { icon: <PersonAddAlt1Icon />, name: 'Add Student', action: () => navigate("/Admin/class/addstudents/" + row.id) },
+      { icon: <PersonAddAlt1Icon />, name: 'Add employee', action: () => navigate("/Admin/class/addemployees/" + row.id) },
     ];
     return (
       <ButtonContainer>
@@ -91,7 +91,7 @@ const ShowClasses = () => {
     return (
       <>
         <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-          <Tooltip title="Add Students & Subjects">
+          <Tooltip title="Add employees & Subjects">
             <IconButton
               onClick={handleClick}
               size="small"

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getUserDetails } from '../../../redux/userRelated/userHandle';
 import { getSubjectList } from '../../../redux/sclassRelated/sclassHandle';
-import { updateStudentFields } from '../../../redux/studentRelated/studentHandle';
+import { updateEmployeeFields } from '../../../redux/employeeRelated/employeeHandle';
 
 import Popup from '../../../components/Popup';
 import { BlueButton } from '../../../components/buttonStyles';
@@ -14,14 +14,14 @@ import {
     TextField, CircularProgress, FormControl
 } from '@mui/material';
 
-const StudentExamMarks = ({ situation }) => {
+const EmployeeExamMarks = ({ situation }) => {
     const dispatch = useDispatch();
     const { currentUser, userDetails, loading } = useSelector((state) => state.user);
     const { subjectsList } = useSelector((state) => state.sclass);
-    const { response, error, statestatus } = useSelector((state) => state.student);
+    const { response, error, statestatus } = useSelector((state) => state.employee);
     const params = useParams()
 
-    const [studentID, setStudentID] = useState("");
+    const [employeeID, setemployeeID] = useState("");
     const [subjectName, setSubjectName] = useState("");
     const [chosenSubName, setChosenSubName] = useState("");
     const [marksObtained, setMarksObtained] = useState("");
@@ -31,21 +31,21 @@ const StudentExamMarks = ({ situation }) => {
     const [loader, setLoader] = useState(false)
 
     useEffect(() => {
-        if (situation === "Student") {
-            setStudentID(params.id);
+        if (situation === "employee") {
+            setemployeeID(params.id);
             const stdID = params.id
-            dispatch(getUserDetails(stdID, "Student"));
+            dispatch(getUserDetails(stdID, "employee"));
         }
         else if (situation === "Subject") {
-            const { studentID, subjectID } = params
-            setStudentID(studentID);
-            dispatch(getUserDetails(studentID, "Student"));
+            const { employeeID, subjectID } = params
+            setemployeeID(employeeID);
+            dispatch(getUserDetails(employeeID, "employee"));
             setChosenSubName(subjectID);
         }
     }, [situation]);
 
     useEffect(() => {
-        if (userDetails && userDetails.sclassName && situation === "Student") {
+        if (userDetails && userDetails.sclassName && situation === "employee") {
             dispatch(getSubjectList(userDetails.sclassName._id, "ClassSubjects"));
         }
     }, [dispatch, userDetails]);
@@ -63,7 +63,7 @@ const StudentExamMarks = ({ situation }) => {
     const submitHandler = (event) => {
         event.preventDefault()
         setLoader(true)
-        dispatch(updateStudentFields(studentID, fields, "UpdateExamResult"))
+        dispatch(updateEmployeeFields(employeeID, fields, "UpdateExamResult"))
     }
 
     useEffect(() => {
@@ -111,7 +111,7 @@ const StudentExamMarks = ({ situation }) => {
                         >
                             <Stack spacing={1} sx={{ mb: 3 }}>
                                 <Typography variant="h4">
-                                    Student Name: {userDetails.name}
+                                    employee Name: {userDetails.name}
                                 </Typography>
                                 {currentUser.teachSubject &&
                                     <Typography variant="h4">
@@ -122,7 +122,7 @@ const StudentExamMarks = ({ situation }) => {
                             <form onSubmit={submitHandler}>
                                 <Stack spacing={3}>
                                     {
-                                        situation === "Student" &&
+                                        situation === "employee" &&
                                         <FormControl fullWidth>
                                             <InputLabel id="demo-simple-select-label">
                                                 Select Subject
@@ -178,4 +178,4 @@ const StudentExamMarks = ({ situation }) => {
     )
 }
 
-export default StudentExamMarks
+export default EmployeeExamMarks

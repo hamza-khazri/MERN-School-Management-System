@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     sclassesList: [],
-    sclassStudents: [],
+    sclassemployees: [],
     sclassDetails: [],
     subjectsList: [],
     subjectDetails: [],
@@ -29,8 +29,8 @@ const sclassSlice = createSlice({
             state.error = null;
             state.getresponse = null;
         },
-        getStudentsSuccess: (state, action) => {
-            state.sclassStudents = action.payload;
+        getemployeesSuccess: (state, action) => {
+            state.sclassemployees = action.payload;
             state.loading = false;
             state.error = null;
             state.getresponse = null;
@@ -49,7 +49,7 @@ const sclassSlice = createSlice({
         },
         getFailedTwo: (state, action) => {
             state.sclassesList = [];
-            state.sclassStudents = [];
+            state.sclassemployees = [];
             state.getresponse = action.payload;
             state.loading = false;
             state.error = null;
@@ -80,7 +80,7 @@ export const {
     getSuccess,
     getFailed,
     getError,
-    getStudentsSuccess,
+    getemployeesSuccess,
     getSubjectsSuccess,
     detailsSuccess,
     getFailedTwo,

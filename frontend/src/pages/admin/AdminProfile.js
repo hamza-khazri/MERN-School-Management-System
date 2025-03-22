@@ -35,7 +35,7 @@ const AdminProfile = () => {
 
     // const deleteHandler = () => {
     //     try {
-    //         dispatch(deleteUser(currentUser._id, "Students"));
+    //         dispatch(deleteUser(currentUser._id, "employees"));
     //         dispatch(deleteUser(currentUser._id, address));
     //         dispatch(authLogout());
     //         navigate('/');

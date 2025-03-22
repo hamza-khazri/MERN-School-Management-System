@@ -4,7 +4,7 @@ import {
     getSuccess,
     getFailed,
     getError,
-    getStudentsSuccess,
+    getemployeesSuccess,
     detailsSuccess,
     getFailedTwo,
     getSubjectsSuccess,
@@ -27,15 +27,15 @@ export const getAllSclasses = (id, address) => async (dispatch) => {
     }
 }
 
-export const getClassStudents = (id) => async (dispatch) => {
+export const getClassemployees = (id) => async (dispatch) => {
     dispatch(getRequest());
 
     try {
-        const result = await axios.get(`${process.env.REACT_APP_BASE_URL}/Sclass/Students/${id}`);
+        const result = await axios.get(`${process.env.REACT_APP_BASE_URL}/Sclass/employees/${id}`);
         if (result.data.message) {
             dispatch(getFailedTwo(result.data.message));
         } else {
-            dispatch(getStudentsSuccess(result.data));
+            dispatch(getemployeesSuccess(result.data));
         }
     } catch (error) {
         dispatch(getError(error));

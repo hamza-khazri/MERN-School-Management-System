@@ -5,7 +5,7 @@ import { BlueButton } from '../../components/buttonStyles';
 import { addStuff } from '../../redux/userRelated/userHandle';
 import { useDispatch, useSelector } from 'react-redux';
 
-const StudentComplain = () => {
+const EmployeeComplain = () => {
     const [complaint, setComplaint] = useState("");
     const [date, setDate] = useState("");
 
@@ -113,4 +113,4 @@ const StudentComplain = () => {
     );
 };
 
-export default StudentComplain;
+export default EmployeeComplain;

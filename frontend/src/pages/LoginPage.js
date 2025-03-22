@@ -28,23 +28,23 @@ const LoginPage = ({ role }) => {
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [rollNumberError, setRollNumberError] = useState(false);
-    const [studentNameError, setStudentNameError] = useState(false);
+    const [employeeNameError, setemployeeNameError] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (role === "Student") {
+        if (role === "employee") {
             const rollNum = event.target.rollNumber.value;
-            const studentName = event.target.studentName.value;
+            const employeeName = event.target.employeeName.value;
             const password = event.target.password.value;
 
-            if (!rollNum || !studentName || !password) {
+            if (!rollNum || !employeeName || !password) {
                 if (!rollNum) setRollNumberError(true);
-                if (!studentName) setStudentNameError(true);
+                if (!employeeName) setemployeeNameError(true);
                 if (!password) setPasswordError(true);
                 return;
             }
-            const fields = { rollNum, studentName, password }
+            const fields = { rollNum, employeeName, password }
             setLoader(true)
             dispatch(loginUser(fields, role))
         }
@@ -70,7 +70,7 @@ const LoginPage = ({ role }) => {
         if (name === 'email') setEmailError(false);
         if (name === 'password') setPasswordError(false);
         if (name === 'rollNumber') setRollNumberError(false);
-        if (name === 'studentName') setStudentNameError(false);
+        if (name === 'employeeName') setemployeeNameError(false);
     };
 
     const guestModeHandler = () => {
@@ -82,10 +82,10 @@ const LoginPage = ({ role }) => {
             setGuestLoader(true)
             dispatch(loginUser(fields, role))
         }
-        else if (role === "Student") {
+        else if (role === "employee") {
             const rollNum = "1"
-            const studentName = "Dipesh Awasthi"
-            const fields = { rollNum, studentName, password }
+            const employeeName = "Dipesh Awasthi"
+            const fields = { rollNum, employeeName, password }
             setGuestLoader(true)
             dispatch(loginUser(fields, role))
         }
@@ -102,8 +102,8 @@ const LoginPage = ({ role }) => {
             if (currentRole === 'Admin') {
                 navigate('/Admin/dashboard');
             }
-            else if (currentRole === 'Student') {
-                navigate('/Student/dashboard');
+            else if (currentRole === 'employee') {
+                navigate('/employee/dashboard');
             } else if (currentRole === 'Teacher') {
                 navigate('/Teacher/dashboard');
             }
@@ -142,7 +142,7 @@ const LoginPage = ({ role }) => {
                             Welcome back! Please enter your details
                         </Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 2 }}>
-                            {role === "Student" ? (
+                            {role === "employee" ? (
                                 <>
                                     <TextField
                                         margin="normal"
@@ -162,13 +162,13 @@ const LoginPage = ({ role }) => {
                                         margin="normal"
                                         required
                                         fullWidth
-                                        id="studentName"
+                                        id="employeeName"
                                         label="Enter your name"
-                                        name="studentName"
+                                        name="employeeName"
                                         autoComplete="name"
                                         autoFocus
-                                        error={studentNameError}
-                                        helperText={studentNameError && 'Name is required'}
+                                        error={employeeNameError}
+                                        helperText={employeeNameError && 'Name is required'}
                                         onChange={handleInputChange}
                                     />
                                 </>

@@ -11,7 +11,7 @@ import Subject from "../../assets/subjects.svg";
 import Assignment from "../../assets/assignment.svg";
 import { getSubjectList } from '../../redux/sclassRelated/sclassHandle';
 
-const StudentHomePage = () => {
+const EmployeeHomePage = () => {
     const dispatch = useDispatch();
 
     const { userDetails, currentUser, loading, response } = useSelector((state) => state.user);
@@ -22,7 +22,7 @@ const StudentHomePage = () => {
     const classID = currentUser.sclassName._id
 
     useEffect(() => {
-        dispatch(getUserDetails(currentUser._id, "Student"));
+        dispatch(getUserDetails(currentUser._id, "employee"));
         dispatch(getSubjectList(classID, "ClassSubjects"));
     }, [dispatch, currentUser._id, classID]);
 
@@ -133,4 +133,4 @@ const Data = styled(CountUp)`
 
 
 
-export default StudentHomePage
+export default EmployeeHomePage

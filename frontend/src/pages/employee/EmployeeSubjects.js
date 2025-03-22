@@ -11,14 +11,14 @@ import TableChartIcon from '@mui/icons-material/TableChart';
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 import { StyledTableCell, StyledTableRow } from '../../components/styles';
 
-const StudentSubjects = () => {
+const EmployeeSubjects = () => {
 
     const dispatch = useDispatch();
     const { subjectsList, sclassDetails } = useSelector((state) => state.sclass);
     const { userDetails, currentUser, loading, response, error } = useSelector((state) => state.user);
 
     useEffect(() => {
-        dispatch(getUserDetails(currentUser._id, "Student"));
+        dispatch(getUserDetails(currentUser._id, "employee"));
     }, [dispatch, currentUser._id])
 
     if (response) { console.log(response) }
@@ -140,4 +140,4 @@ const StudentSubjects = () => {
     );
 };
 
-export default StudentSubjects;
+export default EmployeeSubjects;
