@@ -10,18 +10,18 @@ const { noticeCreate, noticeList, deleteNotices, deleteNotice, updateNotice } = 
 const {
     employeeRegister,
     employeeLogIn,
-    getemployees,
-    getemployeeDetail,
-    deleteemployees,
-    deleteemployee,
-    updateemployee,
+    getEmployees,
+    getEmployeeDetail,
+    deleteEmployees,
+    deleteEmployee,
+    updateEmployee,
     employeeAttendance,
-    deleteemployeesByClass,
+    deleteEmployeesByClass,
     updateExamResult,
-    clearAllemployeesAttendanceBySubject,
-    clearAllemployeesAttendance,
-    removeemployeeAttendanceBySubject,
-    removeemployeeAttendance } = require('../controllers/employee_controller.js');
+    clearAllEmployeesAttendanceBySubject,
+    clearAllEmployeesAttendance,
+    removeEmployeeAttendanceBySubject,
+    removeEmployeeAttendance } = require('../controllers/employee_controller.js');
 const { subjectCreate, classSubjects, deleteSubjectsByClass, getSubjectDetail, deleteSubject, freeSubjectList, allSubjects, deleteSubjects } = require('../controllers/subject-controller.js');
 const { teacherRegister, teacherLogIn, getTeachers, getTeacherDetail, deleteTeachers, deleteTeachersByClass, deleteTeacher, updateTeacherSubject, teacherAttendance } = require('../controllers/teacher-controller.js');
 
@@ -39,24 +39,24 @@ router.get("/Admin/:id", getAdminDetail)
 router.post('/employeeReg', employeeRegister);
 router.post('/employeeLogin', employeeLogIn)
 
-router.get("/employees/:id", getemployees)
-router.get("/employee/:id", getemployeeDetail)
+router.get("/employees/:id", getEmployees)
+router.get("/employee/:id", getEmployeeDetail)
 
-router.delete("/employees/:id", deleteemployees)
-router.delete("/employeesClass/:id", deleteemployeesByClass)
-router.delete("/employee/:id", deleteemployee)
+router.delete("/employees/:id", deleteEmployees)
+router.delete("/employeesClass/:id", deleteEmployeesByClass)
+router.delete("/employee/:id", deleteEmployee)
 
-router.put("/employee/:id", updateemployee)
+router.put("/employee/:id", updateEmployee)
 
 router.put('/UpdateExamResult/:id', updateExamResult)
 
 router.put('/employeeAttendance/:id', employeeAttendance)
 
-router.put('/RemoveAllemployeesSubAtten/:id', clearAllemployeesAttendanceBySubject);
-router.put('/RemoveAllemployeesAtten/:id', clearAllemployeesAttendance);
+router.put('/RemoveAllemployeesSubAtten/:id', clearAllEmployeesAttendanceBySubject);
+router.put('/RemoveAllemployeesAtten/:id', clearAllEmployeesAttendance);
 
-router.put('/RemoveemployeeSubAtten/:id', removeemployeeAttendanceBySubject);
-router.put('/RemoveemployeeAtten/:id', removeemployeeAttendance)
+router.put('/RemoveemployeeSubAtten/:id', removeEmployeeAttendanceBySubject);
+router.put('/RemoveemployeeAtten/:id', removeEmployeeAttendance)
 
 // Teacher
 
